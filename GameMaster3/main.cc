@@ -3,6 +3,8 @@
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 
+//Thanks to https://learnopengl.com/ for the great tutorial!
+
 void fbResize(GLFWwindow* window, int width, int height)
 {
     glViewport(0, 0, 1024, 768);
@@ -10,7 +12,19 @@ void fbResize(GLFWwindow* window, int width, int height)
 
 void handleInput(GLFWwindow* window)
 {
-    
+    /////////////////////
+    //register events here for quicker handling
+    ///////////////////////////////////////
+
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    {
+        glfwSetWindowShouldClose(window, true);
+    }
+}
+
+void renderScene(GLFWwindow* window)
+{
+
 }
 
 int main(int argc, char **argv)
@@ -42,10 +56,13 @@ int main(int argc, char **argv)
     {
         handleInput(window);
 
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         
         glfwPollEvents();
+
+        renderScene(window);
+
         glfwSwapBuffers(window);
     }
 
